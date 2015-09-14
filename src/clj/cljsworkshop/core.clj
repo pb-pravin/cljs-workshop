@@ -13,9 +13,19 @@
   [req]
   (render (io/resource "index.html") req))
 
+(defn test
+  [req]
+  (render (io/resource "test.html") req))
+
+(defn test2
+  [req]
+  (render (io/resource "test.html") req))
+
 ;; Routes definition
 (defroutes app
   (GET "/" [] home)
+  (GET "/test" [] test)
+  (GET "/test/:id" [] test2)
   (route/resources "/static")
   (route/not-found "<h1>Page not found</h1>"))
 
