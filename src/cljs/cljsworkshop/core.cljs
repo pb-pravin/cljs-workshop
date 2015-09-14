@@ -6,6 +6,7 @@
   []
   (let [counter  (atom 0)
         button  (dom/getElement "button")
+        resetme  (dom/getElement "resetme")
         display (dom/getElement "clicksnumber")]
 
     ;; Set initial value
@@ -16,6 +17,13 @@
                    (fn [event]
                      ;; Increment the value
                      (swap! counter inc)
+                     ;; Set new value in display element
+                     (set! (.-innerHTML display) @counter)))
+        ;; Assign event listener
+    (events/listen resetme "click"
+                   (fn [event]
+                     ;; Increment the value
+                     (reset! counter 0)
                      ;; Set new value in display element
                      (set! (.-innerHTML display) @counter)))))
 
