@@ -25,9 +25,10 @@
 (defn render-results [results]
   (let [results (js->clj results)]
     (reduce (fn [acc result]
-              (str acc "<li>" result "</li>"))
+               (str acc "<li> <h1><a href='" (last result)  "'>" (first result) "</a></h1>:<small> "  (second result) "</small></li>"))
             ""
-            (second results))))
+            (map list (second results) (nth results 2) (last results )))))
+
 
 (defn listen [el type]
   (let [out (chan)]
